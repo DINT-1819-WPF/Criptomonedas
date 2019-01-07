@@ -1,0 +1,43 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Criptomonedas"
+        mc:Ignorable="d"
+        Title="Criptomonedas" Height="233.6" Width="538.2" Icon="https://news.bitcoin.com/wp-content/uploads/2016/06/standard_coin_full_color_M.png">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Text" Value="">
+                    <Setter Property="Background" Value="LightCoral"/>
+                </Trigger>
+                <DataTrigger Binding = "{Binding ElementName = NombreTextBlock, Path = Text}" Value = "">
+                    <Setter Property = "IsEnabled" Value = "False"/>
+                    <Setter Property = "Text" Value = "Selecciona una criptomoneda..."/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Image">
+            <Setter Property="Opacity" Value="0.5"/>
+            <EventSetter Event="MouseUp" Handler="Image_MouseUp"></EventSetter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                </Trigger>
+
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Image Source="https://news.bitcoin.com/wp-content/uploads/2016/06/standard_coin_full_color_M.png" Width="100" Tag="Bitcoin"/>
+            <Image Source="https://s2.coinmarketcap.com/static/img/coins/200x200/1321.png" Width="100" Tag="Ethereum"/>
+            <Image Source="https://www.daytrading.com/wp-content/uploads/2017/11/Ripple-min-300x300.png" Width="100" Tag="Ripple"/>
+            <Image Source="https://cdn.vectorstock.com/i/thumb-large/45/77/waiting-stellar-coin-character-cartoon-vector-19274577.jpg" Width="100" Tag="Stellar"/>
+        </StackPanel>
+        <TextBlock HorizontalAlignment="Center" x:Name="NombreTextBlock"  Text="{Binding Tag}" Margin="5,5,0,0" FontSize="20" />
+        <TextBlock  Margin="10,0,0,0">Cotizacion:</TextBlock>
+        <TextBox  HorizontalAlignment="Left" Width="200" Margin="10,5,0,0"></TextBox>
+    </StackPanel>
+</Window>
